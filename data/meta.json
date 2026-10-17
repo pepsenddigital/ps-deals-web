@@ -1,0 +1,112 @@
+{
+  "updated": "2026-10-17T22:31:07.540Z",
+  "fxDate": "Sat, 17 Oct 2026 00:02:32 +0000",
+  "count": 16433,
+  "withRating": 2162,
+  "regions": [
+    {
+      "code": "CL",
+      "name": "Chile",
+      "locale": "es-cl",
+      "access": "Tu tienda",
+      "cheap": false,
+      "ref": true
+    },
+    {
+      "code": "TR",
+      "name": "Turquía",
+      "locale": "tr-tr",
+      "access": "Cuenta TR + gift card",
+      "cheap": true,
+      "ref": false
+    },
+    {
+      "code": "UA",
+      "name": "Ucrania",
+      "locale": "uk-ua",
+      "access": "Cuenta UA + gift card",
+      "cheap": true,
+      "ref": false
+    },
+    {
+      "code": "IN",
+      "name": "India",
+      "locale": "en-in",
+      "access": "Cuenta IN + gift card",
+      "cheap": true,
+      "ref": false
+    },
+    {
+      "code": "ZA",
+      "name": "Sudáfrica",
+      "locale": "en-za",
+      "access": "Cuenta ZA + gift card",
+      "cheap": true,
+      "ref": false
+    },
+    {
+      "code": "BR",
+      "name": "Brasil",
+      "locale": "pt-br",
+      "access": "Cuenta BR + gift card",
+      "cheap": true,
+      "ref": false
+    },
+    {
+      "code": "JP",
+      "name": "Japón",
+      "locale": "ja-jp",
+      "access": "Cuenta JP + gift card",
+      "cheap": true,
+      "ref": false
+    },
+    {
+      "code": "ES",
+      "name": "España",
+      "locale": "es-es",
+      "access": "Cuenta ES + gift card",
+      "cheap": false,
+      "ref": false
+    },
+    {
+      "code": "PL",
+      "name": "Polonia",
+      "locale": "pl-pl",
+      "access": "Cuenta PL + gift card",
+      "cheap": false,
+      "ref": false
+    },
+    {
+      "code": "AR",
+      "name": "Argentina",
+      "locale": "es-ar",
+      "access": "Cuenta AR",
+      "cheap": false,
+      "ref": false
+    },
+    {
+      "code": "CO",
+      "name": "Colombia",
+      "locale": "es-co",
+      "access": "Cuenta CO",
+      "cheap": false,
+      "ref": false
+    },
+    {
+      "code": "AE",
+      "name": "Emiratos",
+      "locale": "ar-ae",
+      "access": "Cuenta AE + gift card",
+      "cheap": false,
+      "ref": false
+    },
+    {
+      "code": "US",
+      "name": "Estados Unidos",
+      "locale": "en-us",
+      "access": "Cuenta US + gift card",
+      "cheap": false,
+      "ref": false
+    }
+  ]
+}
