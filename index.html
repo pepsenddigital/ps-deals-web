@@ -1,0 +1,1483 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Comparador de precios PlayStation — Chile y 13 regiones</title>
+
+<!-- SEO & Open Graph -->
+<meta name="description" content="Encuentra dónde comprar cada juego de PlayStation (PS4 y PS5) más barato. Catálogo completo, 13 regiones oficiales, precios en CLP actualizados cada 4 horas. Compara Turquía, Ucrania, Brasil, Japón y más.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://pepsend.github.io/ps-deals-web/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Comparador de precios PlayStation">
+<meta property="og:title" content="Comparador de precios PlayStation — Chile y 13 regiones">
+<meta property="og:description" content="13.000+ juegos de PS4 y PS5, 13 regiones oficiales. Encuentra dónde cada juego está más barato en CLP. Actualizado cada 4 horas.">
+<meta property="og:image" content="https://pepsend.github.io/ps-deals-web/og-image.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:url" content="https://pepsend.github.io/ps-deals-web/">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Comparador de precios PlayStation">
+<meta name="twitter:description" content="13.000+ juegos, 13 regiones. Precio más barato en CLP actualizado cada 4h.">
+<meta name="twitter:image" content="https://pepsend.github.io/ps-deals-web/og-image.jpg">
+
+<!-- PWA -->
+<link rel="manifest" href="./manifest.json">
+<meta name="theme-color" content="#0067d6">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="PS Deals">
+<link rel="apple-touch-icon" href="./icon-192.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --bg:#090b12;--bg2:#0e121d;--surface:#141926;--surface-2:#1b2233;--raise:#222b40;
+    --border:rgba(255,255,255,0.08);--border-2:rgba(255,255,255,0.16);
+    --text:#f0f4fc;--muted:#95a3bf;--faint:#62708b;
+    --accent:#0067d6;--accent-bright:#2b8fff;--accent-ink:#ffffff;
+    --good:#22c55e;--ok:#84cc16;--mid:#f59e0b;--low:#ef4444;
+    --save:#2b8fff;--save-ink:#04122b;
+    --shadow:0 4px 20px -2px rgba(0,0,0,0.45),0 1px 2px rgba(0,0,0,0.2);
+    --gap:16px;
+  }
+  html{color-scheme:dark}
+  :root[data-theme="light"]{
+    --bg:#eceff5;--bg2:#e0e5ee;--surface:#ffffff;--surface-2:#e7ecf4;--raise:#dde3ed;
+    --border:rgba(15,23,42,0.09);--border-2:rgba(15,23,42,0.18);
+    --text:#182232;--muted:#4d5b72;--faint:#6e7e96;
+    --accent:#0060c7;--accent-bright:#0067d6;--accent-ink:#ffffff;
+    --good:#159a4e;--ok:#7fae1b;--mid:#b45309;--low:#c2410c;
+    --save:#0067d6;--save-ink:#ffffff;
+    --shadow:0 1px 3px rgba(15,23,42,0.05),0 6px 18px -4px rgba(15,23,42,0.06);
+  }
+  html[data-theme="light"]{color-scheme:light}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--text);
+    font:14.5px/1.5 'Inter',system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Arial,sans-serif;
+    -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 20px}
+  a{color:inherit;text-decoration:none}
+  header{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--bg) 88%,transparent);
+    backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid var(--border)}
+  .head{display:flex;align-items:center;gap:14px;padding:16px 0 12px}
+  .brand{display:flex;align-items:center;gap:12px}
+  .brand-logo{width:36px;height:36px;border-radius:10px;background:linear-gradient(145deg,#0067d6,#003d82);
+    display:grid;place-items:center;color:#fff;box-shadow:0 4px 12px rgba(0,103,214,0.35);flex:none}
+  .brand-logo svg{width:20px;height:20px}
+  .brand h1{margin:0;font-family:'Sora','Inter',system-ui,sans-serif;font-weight:700;font-size:18px;letter-spacing:-.4px}
+  .brand p{margin:2px 0 0;color:var(--muted);font-size:12px}
+  .stat{margin-left:auto;text-align:right;font-size:11.5px;color:var(--faint);line-height:1.4}
+  .stat b{color:var(--muted);font-weight:600}
+  .headbtns{display:flex;gap:8px;align-items:center;margin-left:14px}
+  .themebtn{width:36px;height:36px;flex:none;border-radius:10px;border:1px solid var(--border);
+    background:var(--surface);color:var(--muted);cursor:pointer;display:grid;place-items:center;transition:border-color .15s,color .15s}
+  .themebtn:hover{color:var(--text);border-color:var(--border-2)}
+  .themebtn svg{width:16px;height:16px}
+
+  /* Segmented Control / Tabs */
+  .tabs{display:inline-flex;gap:3px;padding:3px;background:var(--surface-2);border:1px solid var(--border);border-radius:11px;margin-bottom:2px}
+  .tab{position:relative;background:none;border:none;color:var(--muted);font-family:'Inter',system-ui,sans-serif;
+    font-weight:600;font-size:13px;padding:7px 14px;cursor:pointer;border-radius:8px;transition:background .15s,color .15s,box-shadow .15s;
+    display:inline-flex;align-items:center;gap:6px}
+  .tab:hover{color:var(--text)}
+  .tab.active{background:var(--surface);color:var(--text);box-shadow:0 1px 3px rgba(0,0,0,0.2)}
+  :root[data-theme="light"] .tab.active{box-shadow:0 1px 3px rgba(0,0,0,0.08)}
+  .tab .dot{display:inline-block;width:6px;height:6px;border-radius:50%;background:#ef4444}
+  .tab .wl-badge{display:inline-flex;align-items:center;justify-content:center;min-width:18px;height:18px;
+    padding:0 5px;border-radius:9px;background:var(--accent-bright);color:var(--accent-ink);font-size:10.5px;
+    font-weight:700;margin-left:4px}
+
+  /* Controles y Filtros */
+  .controls{display:flex;flex-wrap:wrap;gap:10px;padding:16px 0 18px;align-items:center}
+  .field{position:relative;display:flex}
+  .field input,.field select{appearance:none;background:var(--surface);border:1px solid var(--border);
+    color:var(--text);padding:8px 12px;border-radius:9px;font:inherit;font-size:13.5px;outline:none;
+    transition:border-color .15s,box-shadow .15s}
+  .field input:focus,.field select:focus{border-color:var(--accent-bright);box-shadow:0 0 0 2px color-mix(in srgb,var(--accent-bright) 20%,transparent)}
+  .field input{min-width:240px}
+  .field input::placeholder{color:var(--faint)}
+  .field.sel::after{content:"";position:absolute;right:11px;top:50%;width:0;height:0;border-left:4px solid transparent;
+    border-right:4px solid transparent;border-top:5px solid var(--muted);pointer-events:none;transform:translateY(-50%)}
+  .field select{padding-right:28px;cursor:pointer}
+
+  .toggle{display:inline-flex;align-items:center;gap:7px;background:var(--surface);border:1px solid var(--border);
+    border-radius:9px;padding:8px 12px;font-size:13px;cursor:pointer;color:var(--muted);user-select:none;transition:border-color .15s,color .15s}
+  .toggle:hover{color:var(--text);border-color:var(--border-2)}
+  .toggle input{margin:0;accent-color:var(--accent-bright);cursor:pointer}
+
+  .country-active-pill, .genre-active-pill{
+    display:inline-flex;align-items:center;gap:6px;background:var(--surface-2);
+    border:1px solid color-mix(in srgb,var(--accent-bright) 35%,transparent);
+    border-radius:8px;padding:5px 9px;font-size:12px;color:var(--text);animation:fadeIn .15s ease}
+  .country-active-pill .flag{width:16px;height:11px;object-fit:cover;border-radius:2px}
+  .country-active-pill button, .genre-active-pill button{
+    background:none;border:none;color:var(--muted);cursor:pointer;font-size:14px;padding:0;line-height:1;margin-left:2px}
+  .country-active-pill button:hover, .genre-active-pill button:hover{color:var(--text)}
+  .count{margin-left:auto;font-size:12px;color:var(--faint)}
+
+  /* Estante horizontal de nuevos lanzamientos */
+  .new-shelf-wrap{background:linear-gradient(180deg,var(--surface) 0%,color-mix(in srgb,var(--surface) 60%,var(--bg)) 100%);
+    border:1px solid var(--border);border-radius:14px;padding:14px 16px;margin:4px 0 18px;position:relative}
+  .new-shelf-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
+  .new-shelf-tag{font-size:10.5px;font-weight:700;letter-spacing:.6px;text-transform:uppercase;color:var(--accent-bright)}
+  .new-shelf-title{margin:2px 0 0;font-family:'Sora','Inter',system-ui,sans-serif;font-size:15.5px;font-weight:700}
+  .new-shelf-link{display:inline-flex;align-items:center;gap:5px;font-size:12px;font-weight:600;color:var(--accent-bright);
+    background:none;border:none;cursor:pointer;padding:0}
+  .new-shelf-link svg{width:14px;height:14px}
+  .new-shelf-link:hover{text-decoration:underline}
+  .new-shelf-scroll{display:flex;gap:11px;overflow-x:auto;padding-bottom:4px;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+  .new-shelf-scroll::-webkit-scrollbar{display:none}
+  .shelf-card{flex:0 0 128px;width:128px;min-width:128px;max-width:128px;background:var(--surface-2);border:1px solid var(--border);border-radius:10px;
+    padding:8px;cursor:pointer;display:flex;flex-direction:column;gap:6px;transition:border-color .15s,transform .15s;position:relative}
+  .shelf-card:hover{border-color:var(--accent-bright);transform:translateY(-2px)}
+  .shelf-badge{position:absolute;top:12px;left:12px;z-index:2;font-size:9.5px;font-weight:700;padding:2px 6px;
+    border-radius:5px;letter-spacing:.2px;font-family:'Inter',system-ui,sans-serif}
+  .shelf-badge.today{background:var(--accent-bright);color:#fff}
+  .shelf-badge.yesterday{background:var(--surface);color:var(--text);border:1px solid var(--border)}
+  .shelf-badge.recent{background:rgba(0,0,0,0.75);color:#fff;backdrop-filter:blur(4px);border:1px solid rgba(255,255,255,.15)}
+  .shelf-img{width:100%;height:112px;aspect-ratio:1;border-radius:7px;object-fit:cover;background:var(--surface);display:block}
+  .shelf-img.ph{display:grid;place-items:center;color:var(--faint);font-size:18px;height:112px}
+  .shelf-info{min-width:0;display:flex;flex-direction:column;flex:1}
+  .shelf-title{font-size:11.5px;font-weight:600;line-height:1.25;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;height:29px}
+  .shelf-price{font-family:'Sora','Inter',system-ui,sans-serif;font-weight:700;font-size:13px;color:var(--accent-bright);margin-top:auto}
+  .shelf-price.gratis{color:var(--good)}
+  .shelf-price.no-price{color:var(--faint);font-size:11.5px;font-weight:600}
+
+  /* Grid & Tarjetas */
+  .grid{display:grid;grid-template-columns:1fr;gap:10px;margin-bottom:24px}
+  .card{display:grid;grid-template-columns:84px 1fr auto;gap:14px;background:var(--surface);
+    border:1px solid var(--border);border-radius:13px;padding:12px 14px;align-items:center;
+    transition:border-color .15s,transform .15s;position:relative}
+  .card:hover{border-color:var(--border-2);box-shadow:var(--shadow)}
+  .cover{width:84px;height:84px;border-radius:9px;object-fit:cover;background:var(--surface-2);flex:none;cursor:pointer}
+  .cover-ph{width:84px;height:84px;border-radius:9px;background:var(--surface-2);display:grid;place-items:center;color:var(--faint);font-size:22px;flex:none}
+  .info{min-width:0}
+  .gtitle{margin:0 0 4px;font-family:'Sora','Inter',system-ui,sans-serif;font-size:15.5px;font-weight:700;
+    line-height:1.3;letter-spacing:-.2px;user-select:text;cursor:pointer}
+  .gtitle:hover{color:var(--accent-bright)}
+  .gmeta{display:flex;flex-wrap:wrap;align-items:center;gap:6px;font-size:11.5px;color:var(--muted);margin-bottom:4px}
+  .pf-tag{font-size:10.5px;font-weight:700;padding:2px 6px;border-radius:4px;background:var(--surface-2);border:1px solid var(--border);color:var(--text)}
+  .pf-tag.ps5{background:color-mix(in srgb,var(--accent) 15%,transparent);color:var(--accent-bright);border-color:color-mix(in srgb,var(--accent) 30%,transparent)}
+  .score{display:inline-flex;align-items:center;justify-content:center;min-width:30px;height:22px;
+    padding:0 5px;border-radius:5px;color:#fff;font-weight:700;font-size:11.5px}
+  .score.na{background:var(--surface-2);color:var(--faint);border:1px solid var(--border)}
+  .slabel{font-size:10px;color:var(--faint);text-transform:uppercase;letter-spacing:.3px}
+  .new-tag{font-size:10px;font-weight:700;padding:2px 6px;border-radius:4px;text-transform:uppercase}
+  .new-tag.today{background:color-mix(in srgb,#16a34a 20%,transparent);color:#22c55e;border:1px solid color-mix(in srgb,#16a34a 35%,transparent)}
+  .new-tag.yesterday{background:color-mix(in srgb,#ea580c 20%,transparent);color:#f97316;border:1px solid color-mix(in srgb,#ea580c 35%,transparent)}
+  .new-tag.recent{background:var(--surface-2);color:var(--muted);border:1px solid var(--border)}
+  .preorder-badge{display:inline-flex;align-items:center;gap:5px;font-size:10.5px;font-weight:600;
+    padding:2px 7px;border-radius:5px;background:color-mix(in srgb,var(--mid) 15%,transparent);
+    color:var(--mid);border:1px solid color-mix(in srgb,var(--mid) 30%,transparent)}
+  .preorder-badge .dot{width:5px;height:5px;border-radius:50%;background:var(--mid)}
+  .genre-tags{display:flex;flex-wrap:wrap;gap:5px;margin-top:6px}
+  .gtag{background:var(--surface-2);border:1px solid var(--border);color:var(--muted);border-radius:6px;
+    padding:3px 8px;font-size:11px;font-weight:500;cursor:pointer;transition:border-color .15s,color .15s;line-height:1.3;white-space:nowrap}
+  .gtag:hover{color:var(--text);border-color:var(--border-2);background:var(--surface)}
+
+  /* Caja de precio */
+  .pbox{text-align:right;min-width:170px}
+  .pbox .bestrow{display:flex;align-items:center;justify-content:flex-end;gap:6px}
+  .pbox .flag{width:18px;height:12px;object-fit:cover;border-radius:2px}
+  .pbox .bregion{font-size:12px;color:var(--muted);font-weight:500}
+  .pbox .bprice{font-family:'Sora','Inter',system-ui,sans-serif;font-size:18px;font-weight:800;color:var(--text)}
+  .pbox .bprice.gratis{color:var(--good)}
+  .pbox .bprice.no-price{font-size:13px;color:var(--faint);font-weight:600}
+  .pbox .tag{display:inline-block;padding:2px 6px;border-radius:5px;font-size:11px;font-weight:700;
+    background:color-mix(in srgb,var(--good) 15%,transparent);color:var(--good);border:1px solid color-mix(in srgb,var(--good) 30%,transparent)}
+  .pbox .pbox-sub{font-size:11.5px;color:var(--faint);margin-top:2px}
+  .pbox .chile{color:var(--muted)}
+  .pbox .ends{font-size:11px;color:var(--mid);margin-top:2px}
+
+  /* Acciones de tarjeta */
+  .actions{display:flex;align-items:center;gap:6px;grid-column:1 / -1;border-top:1px solid var(--border);padding-top:8px}
+  .expand{background:none;border:none;color:var(--muted);font-size:12px;font-weight:600;cursor:pointer;
+    padding:4px 8px;border-radius:6px;display:inline-flex;align-items:center;gap:5px;transition:color .15s}
+  .expand:hover{color:var(--text)}
+  .expand svg{width:13px;height:13px;transition:transform .2s}
+  .expand.open svg{transform:rotate(180deg)}
+  .act-group{margin-left:auto;display:flex;gap:6px}
+  .act-btn{background:var(--surface-2);border:1px solid var(--border);color:var(--muted);font-size:11.5px;
+    font-weight:600;padding:5px 9px;border-radius:7px;cursor:pointer;display:inline-flex;align-items:center;gap:5px;transition:all .15s}
+  .act-btn:hover{color:var(--text);border-color:var(--border-2)}
+  .act-btn svg{width:13px;height:13px}
+  .act-btn.star-on{background:color-mix(in srgb,var(--mid) 15%,transparent);border-color:color-mix(in srgb,var(--mid) 35%,transparent);color:var(--mid)}
+  .act-btn.dl-btn:hover{border-color:var(--accent-bright);color:var(--accent-bright)}
+
+  /* Regiones desplegables en tarjeta */
+  .regions{display:none;grid-column:1 / -1;border-top:1px solid var(--border);margin-top:4px;padding-top:8px}
+  .regions.open{display:block}
+  .rrow{display:flex;align-items:center;gap:10px;padding:6px 8px;border-radius:7px;font-size:12.5px}
+  .rrow:hover{background:var(--surface-2)}
+  .rrow .flag{width:18px;height:12px;object-fit:cover;border-radius:2px;flex:none}
+  .rrow .rname{font-weight:600;min-width:110px}
+  .rrow .rend{font-size:11px;color:var(--mid);margin-left:4px;font-weight:400}
+  .rrow .cmp-access{font-size:11px;color:var(--faint);margin-left:auto}
+  .rrow .rlocal{font-variant-numeric:tabular-nums;color:var(--muted);margin-left:14px;min-width:75px;text-align:right}
+  .rrow .rclp{font-variant-numeric:tabular-nums;font-weight:700;min-width:75px;text-align:right}
+  .rrow .rdisc{display:inline-block;padding:1px 5px;border-radius:4px;font-size:10.5px;font-weight:700;
+    background:color-mix(in srgb,var(--good) 15%,transparent);color:var(--good);margin-left:6px}
+  .rrow a{color:var(--accent-bright);font-size:11.5px;font-weight:600;margin-left:10px}
+  .rrow a:hover{text-decoration:underline}
+
+  /* Modales y Detalle */
+  .modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.7);backdrop-filter:blur(6px);
+    display:none;place-items:center;z-index:50;padding:20px}
+  .modal-overlay.open{display:grid}
+  .modal{background:var(--surface);border:1px solid var(--border);border-radius:16px;max-width:700px;
+    width:100%;max-height:88vh;display:flex;flex-direction:column;box-shadow:var(--shadow);animation:popIn .18s ease}
+  .modal-head{display:flex;align-items:center;gap:12px;padding:16px 20px;border-bottom:1px solid var(--border)}
+  .modal-cover{width:46px;height:46px;border-radius:8px;object-fit:cover;background:var(--raise)}
+  .modal-title{margin:0;font-family:'Sora','Inter',system-ui,sans-serif;font-size:16px;font-weight:700;flex:1}
+  .modal-close{background:none;border:none;color:var(--muted);cursor:pointer;font-size:22px;padding:0;line-height:1}
+  .modal-close:hover{color:var(--text)}
+  .modal-body{padding:16px 20px;overflow-y:auto}
+  .cmp-table{width:100%;border-collapse:collapse;font-size:12.5px}
+  .cmp-table th{text-align:left;color:var(--faint);font-size:11px;font-weight:600;text-transform:uppercase;
+    padding:8px 6px;border-bottom:1px solid var(--border)}
+  .cmp-table td{padding:8px 6px;border-bottom:1px solid color-mix(in srgb,var(--border) 40%,transparent)}
+  .cmp-table .best-row{background:color-mix(in srgb,var(--accent-bright) 10%,transparent)}
+  .best-badge{display:inline-block;padding:2px 6px;border-radius:4px;font-size:10px;font-weight:700;
+    background:var(--accent-bright);color:#fff;margin-left:6px}
+
+  /* Vista detalle */
+  #detail-view{display:none;padding:20px 0 60px}
+  .detail-back{background:none;border:none;color:var(--accent-bright);font-size:13.5px;font-weight:600;
+    cursor:pointer;display:inline-flex;align-items:center;gap:6px;padding:0 0 16px}
+  .detail-back svg{width:16px;height:16px}
+  .detail-back:hover{text-decoration:underline}
+  .detail-hero{display:grid;grid-template-columns:160px 1fr;gap:20px;background:var(--surface);
+    border:1px solid var(--border);border-radius:16px;padding:20px;margin-bottom:20px}
+  .detail-cover{width:160px;aspect-ratio:1;border-radius:12px;object-fit:cover;background:var(--raise)}
+  .detail-title{margin:0 0 6px;font-family:'Sora','Inter',system-ui,sans-serif;font-size:22px;font-weight:800;letter-spacing:-.4px}
+  .detail-score-row{display:flex;align-items:center;gap:8px;margin-bottom:10px}
+  .detail-genre-tags{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:12px}
+  .detail-best{font-size:14px;color:var(--muted);margin-bottom:14px}
+  .detail-best .bprice{font-size:20px;font-weight:800;color:var(--accent-bright)}
+  .detail-section{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:18px 20px;margin-bottom:16px}
+  .detail-section-title{margin:0 0 12px;font-family:'Sora','Inter',system-ui,sans-serif;font-size:14.5px;font-weight:700}
+
+  /* Pager & Estados */
+  .pager-wrap{display:flex;flex-direction:column;align-items:center;gap:12px;margin:28px 0 44px}
+  .pager{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:6px}
+  .pager button{background:var(--surface);border:1px solid var(--border);color:var(--text);font-family:inherit;font-weight:600;font-size:13px;
+    padding:8px 14px;border-radius:8px;cursor:pointer;transition:all .15s ease;display:inline-flex;align-items:center;gap:6px;user-select:none;line-height:1}
+  .pager button:hover:not(:disabled):not(.active){background:var(--surface-2);color:var(--accent-bright);border-color:var(--accent-bright);transform:translateY(-1px)}
+  .pager button.active{background:var(--accent) !important;color:#ffffff !important;border-color:var(--accent) !important;font-weight:700;box-shadow:0 2px 10px rgba(0,103,214,0.45);cursor:default;transform:none}
+  .pager button:disabled{opacity:0.35;cursor:not-allowed;border-color:var(--border);color:var(--muted);transform:none}
+  .pager .pager-ellipsis{color:var(--faint);padding:0 6px;font-size:13px;user-select:none}
+  .pager-status{font-size:12.5px;color:var(--muted);font-weight:500;background:var(--surface);padding:5px 14px;border-radius:20px;border:1px solid var(--border);letter-spacing:0.2px}
+  .pager-status strong{color:var(--text);font-weight:700}
+  [hidden]{display:none !important}
+  #state[hidden],.state[hidden],#state.hidden,.state.hidden{display:none !important}
+  .state{padding:60px 20px;text-align:center;color:var(--muted);display:flex;flex-direction:column;align-items:center;gap:12px}
+  .spinner{width:32px;height:32px;border:3px solid var(--border);border-top-color:var(--accent-bright);border-radius:50%;animation:spin .8s linear infinite}
+
+  /* Toast Notification */
+  .toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:var(--surface);
+    border:1px solid var(--border-2);color:var(--text);padding:10px 18px;border-radius:10px;
+    font-size:13px;font-weight:500;box-shadow:var(--shadow);z-index:99;display:flex;align-items:center;gap:8px;animation:fadeUp .2s ease}
+  footer{padding:30px 20px 40px;color:var(--faint);font-size:12px;border-top:1px solid var(--border);text-align:center}
+
+  @keyframes spin{to{transform:rotate(360deg)}}
+  @keyframes popIn{from{opacity:0;transform:scale(.97)}to{opacity:1;transform:scale(1)}}
+  @keyframes fadeUp{from{opacity:0;transform:translate(-50%,10px)}to{opacity:1;transform:translate(-50%,0)}}
+  @keyframes fadeIn{from{opacity:0}to{opacity:1}}
+
+  /* Mobile */
+  @media(max-width:640px){
+    .wrap{padding:0 12px}
+    .head{padding:12px 0 8px}
+    .brand p{display:none}
+    .stat{display:none}
+    .tabs{width:100%;overflow-x:auto}
+    .controls{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+    .controls .field:first-child{grid-column:1 / -1}
+    .controls .field input{min-width:0;width:100%}
+    .controls .field select{width:100%}
+    .card{grid-template-columns:70px 1fr;gap:10px;padding:10px}
+    .cover,.cover-ph{width:70px;height:70px}
+    .pbox{grid-column:1 / -1;text-align:left;display:flex;justify-content:space-between;align-items:center;
+      background:var(--surface-2);padding:8px 10px;border-radius:8px;border:1px solid var(--border)}
+    .pbox .bestrow{justify-content:flex-start}
+    .detail-hero{grid-template-columns:90px 1fr;gap:12px;padding:14px}
+    .detail-cover{width:90px}
+    .act-btn.dl-btn{display:none}
+    .pager button{padding:7px 11px;font-size:12.5px}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <div class="head">
+      <div class="brand">
+        <div class="brand-logo">
+          <svg viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14.5v-9l7 4.5-7 4.5z"/>
+          </svg>
+        </div>
+        <div>
+          <h1>Comparador de precios PlayStation</h1>
+          <p>Catálogo de PS4 y PS5 en 13 regiones oficiales. Encuentra el mejor precio en CLP.</p>
+        </div>
+      </div>
+      <div class="stat" id="stat"></div>
+      <div class="headbtns">
+        <button class="themebtn" id="themebtn" title="Cambiar tema" aria-label="Cambiar tema">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+    <div class="tabs" id="tabs" hidden>
+      <button class="tab active" data-mode="all">Catálogo</button>
+      <button class="tab" data-mode="nuevos">Estrenos<span class="wl-badge" id="new-badge" style="display:none">0</span></button>
+      <button class="tab" data-mode="preorder">Preventas</button>
+      <button class="tab" data-mode="ofertas"><span class="dot"></span>Ofertas</button>
+      <button class="tab" data-mode="watchlist">Favoritos<span class="wl-badge" id="wl-badge" style="display:none">0</span></button>
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+  <div class="controls" id="controls" hidden>
+    <div class="field">
+      <input id="q" type="search" placeholder="Buscar juego de PlayStation..." autocomplete="off">
+    </div>
+    <div class="field sel">
+      <select id="sort">
+        <option value="new" selected>Recién lanzados (Día a día)</option>
+        <option value="preorder">Próximos lanzamientos (Preventas)</option>
+        <option value="mc">Nota (mayor a menor)</option>
+        <option value="clp">Precio más barato</option>
+        <option value="save">Mayor ahorro vs Chile</option>
+        <option value="disc">Mayor descuento</option>
+        <option value="name">Nombre (A-Z)</option>
+      </select>
+    </div>
+    <div class="field sel">
+      <select id="plat">
+        <option value="">Todas las plataformas</option>
+        <option value="PS5">Solo PS5</option>
+        <option value="PS4">Solo PS4</option>
+      </select>
+    </div>
+    <div class="field sel">
+      <select id="country">
+        <option value="">Todos los países (13)</option>
+      </select>
+    </div>
+    <div class="field sel">
+      <select id="genre">
+        <option value="">Todos los géneros</option>
+      </select>
+    </div>
+    <label class="toggle"><input type="checkbox" id="rated"> Solo con nota</label>
+    <label class="toggle" id="only-best-toggle" hidden><input type="checkbox" id="only-best"> Solo si es el más barato</label>
+
+    <div class="country-active-pill" id="country-active-pill" hidden>
+      <span id="country-active-flag"></span>
+      <span id="country-active-name"></span>
+      <button type="button" id="country-clear-btn" title="Quitar filtro de país">×</button>
+    </div>
+    <div class="genre-active-pill" id="genre-active-pill" hidden>
+      <span id="genre-active-name"></span>
+      <button type="button" id="genre-clear-btn" title="Quitar filtro de género">×</button>
+    </div>
+    <span class="count" id="count"></span>
+  </div>
+</div>
+
+<div id="main-view">
+  <main class="wrap">
+    <div id="state" class="state"><div class="spinner"></div><div>Cargando catálogo de PlayStation...</div></div>
+
+    <!-- Estante de estrenos en cabecera -->
+    <div class="new-shelf-wrap" id="new-shelf" hidden>
+      <div class="new-shelf-head">
+        <div>
+          <div class="new-shelf-tag">Lanzamientos</div>
+          <h2 class="new-shelf-title">Estrenos recientes</h2>
+        </div>
+        <button class="new-shelf-link" id="new-shelf-btn">Ver todos los estrenos →</button>
+      </div>
+      <div class="new-shelf-scroll" id="new-shelf-scroll"></div>
+    </div>
+
+    <div class="grid" id="grid"></div>
+    <div class="pager-wrap" id="pager-wrap">
+      <div class="pager-status" id="pager-status"></div>
+      <div class="pager" id="pager"></div>
+    </div>
+  </main>
+</div>
+
+<div id="detail-view" class="wrap">
+  <button class="detail-back" id="detail-back">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+    Volver al catálogo
+  </button>
+  <div id="detail-content"></div>
+</div>
+
+<div class="modal-overlay" id="modal-overlay">
+  <div class="modal">
+    <div class="modal-head">
+      <img class="modal-cover" id="modal-cover" src="" alt="" style="display:none">
+      <h2 class="modal-title" id="modal-title"></h2>
+      <button class="modal-close" id="modal-close" aria-label="Cerrar">×</button>
+    </div>
+    <div class="modal-body">
+      <table class="cmp-table">
+        <thead>
+          <tr>
+            <th>Región</th>
+            <th>Acceso</th>
+            <th>Local</th>
+            <th><button style="background:none;border:none;color:inherit;font:inherit;font-weight:700;cursor:pointer;padding:0" id="cmp-sort-clp">CLP ↑</button></th>
+            <th>Descuento</th>
+            <th>Límite</th>
+            <th>Tienda</th>
+          </tr>
+        </thead>
+        <tbody id="cmp-body"></tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<footer class="wrap">
+  <div id="foot">Comparador de precios PlayStation Store · Precios y divisas convertidos a CLP en tiempo real.</div>
+</footer>
+
+<div id="toast-container"></div>
+
+<script>
+// ============= SVG Icons =============
+const STAR_ICO = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>`;
+const COMPARE_ICO = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="18" rx="2"/><rect x="14" y="3" width="7" height="18" rx="2"/></svg>`;
+const DETAIL_ICO = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>`;
+const CHEV = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>`;
+const DLOAD = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>`;
+
+// ============= Estado global =============
+let GAMES = [];
+let META = { regions: [] };
+let REG = {};
+let ROWS = [];
+let page = 1;
+const PER_PAGE = 48;
+let mode = 'all';
+let cmpGame = null;
+let cmpAsc = true;
+let WATCHLIST = new Set(JSON.parse(localStorage.getItem('ps_watchlist') || '[]'));
+
+const $ = s => document.querySelector(s);
+const cleanTitle = s => (s || '').replace(/[™®©]/g, '').replace(/â„¢|â®|Â®|â€|Â/g, '').trim();
+const cleanGenre = s => (s || '')
+  .replace(/AcciÃ³n y aventura/g, 'Acción y aventura')
+  .replace(/AcciÃ³n/g, 'Acción')
+  .replace(/ClÃ¡sicos/g, 'Clásicos')
+  .replace(/MÃºsica/g, 'Música')
+  .replace(/SimulaciÃ³n/g, 'Simulación')
+  .replace(/Accion/g, 'Acción')
+  .replace(/[™®©]/g, '')
+  .trim();
+const fmtCLP = n => n == null ? '-' : (n === 0 ? 'Gratis' : '$' + Math.round(n).toLocaleString('es-CL'));
+const fmtLocal = (n, c) => n == null ? '-' : (n === 0 ? 'Gratis' : Number(n).toLocaleString('es-CL', { maximumFractionDigits: 2 }) + ' ' + (c || ''));
+const scoreColor = mc => mc >= 90 ? 'var(--good)' : mc >= 80 ? 'var(--ok)' : mc >= 70 ? 'var(--mid)' : 'var(--low)';
+const MESES = ['ene','feb','mar','abr','may','jun','jul','ago','sep','oct','nov','dic'];
+const TODAY_STR = new Date().toISOString().slice(0, 10);
+const YESTERDAY_STR = new Date(Date.now() - 864e5).toISOString().slice(0, 10);
+const FOURTEEN_DAYS_AGO = new Date(Date.now() - 14 * 864e5).toISOString().slice(0, 10);
+const THIRTY_DAYS_AGO = new Date(Date.now() - 30 * 864e5).toISOString().slice(0, 10);
+
+function parseDate(s) {
+  if (!s) return null;
+  if (typeof s === 'number' || /^\d{10,13}$/.test(String(s).trim())) {
+    const n = Number(s);
+    const ms = n < 1e11 ? n * 1000 : n;
+    const d = new Date(ms);
+    if (!isNaN(d.getTime())) return d;
+  }
+  if (typeof s === 'string') {
+    const str = s.trim();
+    if (/^\d{4}-\d{2}-\d{2}/.test(str)) {
+      const p = str.slice(0, 10).split('-');
+      const d = new Date(+p[0], +p[1] - 1, +p[2]);
+      if (!isNaN(d.getTime())) return d;
+    }
+    const d = new Date(str);
+    if (!isNaN(d.getTime())) return d;
+  }
+  return null;
+}
+
+const fmtDate = s => {
+  const d = parseDate(s);
+  if (!d) return '';
+  return d.getDate() + ' ' + MESES[d.getMonth()] + ' ' + d.getFullYear();
+};
+const fmtDateShort = s => {
+  const d = parseDate(s);
+  if (!d) return '';
+  return d.getDate() + ' ' + MESES[d.getMonth()];
+};
+const flagImg = c => `<img class="flag" src="https://flagcdn.com/w40/${c.toLowerCase()}.png" alt="${c}" loading="lazy">`;
+
+function showToast(msg) {
+  const c = $('#toast-container');
+  if (!c) return;
+  c.innerHTML = `<div class="toast">${msg}</div>`;
+  setTimeout(() => { if (c) c.innerHTML = ''; }, 2400);
+}
+
+function copyGameTitle(title) {
+  navigator.clipboard.writeText(title).then(() => {
+    showToast(`Título copiado: "${title}"`);
+  }).catch(() => {});
+}
+
+// ============= Cache IndexedDB (<30ms) =============
+const DB_NAME = 'ps-deals-db';
+const DB_VERSION = 1;
+const DB_STORE = 'catalog';
+
+function idbOpen() {
+  return new Promise(resolve => {
+    try {
+      if (!window.indexedDB) return resolve(null);
+      const req = indexedDB.open(DB_NAME, DB_VERSION);
+      req.onupgradeneeded = e => {
+        const db = e.target.result;
+        if (!db.objectStoreNames.contains(DB_STORE)) db.createObjectStore(DB_STORE);
+      };
+      req.onsuccess = () => resolve(req.result);
+      req.onerror = () => resolve(null);
+    } catch {
+      resolve(null);
+    }
+  });
+}
+
+async function idbGet(key) {
+  try {
+    const db = await idbOpen();
+    if (!db) return null;
+    return new Promise(resolve => {
+      const tx = db.transaction(DB_STORE, 'readonly');
+      const req = tx.objectStore(DB_STORE).get(key);
+      req.onsuccess = () => resolve(req.result || null);
+      req.onerror = () => resolve(null);
+    });
+  } catch {
+    return null;
+  }
+}
+
+async function idbSet(key, val) {
+  try {
+    const db = await idbOpen();
+    if (!db) return false;
+    return new Promise(resolve => {
+      const tx = db.transaction(DB_STORE, 'readwrite');
+      tx.objectStore(DB_STORE).put(val, key);
+      tx.oncomplete = () => resolve(true);
+      tx.onerror = () => resolve(false);
+    });
+  } catch {
+    return false;
+  }
+}
+
+// ============= Carga de datos =============
+function applyCatalog(gamesData, metaData) {
+  GAMES = gamesData;
+  META = metaData;
+
+  // Indexar regiones
+  for (const r of (META.regions || [])) {
+    REG[r.code] = r;
+  }
+
+  // Pre-procesar juegos
+  for (const g of GAMES) {
+    const list = [];
+    let best = null;
+    for (const [code, cell] of Object.entries(g.r || {})) {
+      if (!cell || cell[1] == null) continue;
+      const isExpired = Boolean(cell[3] && cell[3] < TODAY_STR);
+      const disc = isExpired ? 0 : (cell[2] || 0);
+      const end = isExpired ? null : (cell[3] || null);
+      const it = { code, local: cell[0], clp: cell[1], disc, end };
+      list.push(it);
+      if (!best || it.clp < best.clp) best = it;
+    }
+    list.sort((a, b) => a.clp - b.clp);
+    g._list = list;
+    g._best = best;
+    g._cl = g.r?.CL ? g.r.CL[1] : null;
+    g._disc = best ? (best.disc || 0) : 0;
+    
+    // Identificar estrenos y preventas
+    const hasIsoDate = Boolean(g.d);
+    g._isRel = Boolean(
+      (hasIsoDate && g.d <= TODAY_STR) ||
+      (!hasIsoDate && g.y && g.y >= 2024)
+    );
+    g._isPre = Boolean(
+      (hasIsoDate && g.d > TODAY_STR) ||
+      (!hasIsoDate && g.y && g.y > 2026)
+    );
+  }
+
+  populateFilters();
+  
+  const stateEl = $('#state');
+  if (stateEl) {
+    stateEl.hidden = true;
+    stateEl.style.display = 'none';
+  }
+  $('#controls').hidden = false;
+  $('#tabs').hidden = false;
+
+  updateBadges();
+
+  const dt = new Date(META.updated);
+  const hrs = Math.max(0, Math.round((Date.now() - dt.getTime()) / 36e5));
+  $('#stat').innerHTML = `<b>${GAMES.length.toLocaleString('es-CL')}</b> juegos · Actualizado hace ${hrs === 0 ? 'minutos' : hrs + 'h'}`;
+
+  loadURL();
+  render();
+}
+
+async function boot() {
+  let renderedFromCache = false;
+
+  // 1. Carga ultra rápida instantánea desde IndexedDB (<30ms)
+  try {
+    const [cachedMeta, cachedGames] = await Promise.all([
+      idbGet('meta'),
+      idbGet('games')
+    ]);
+    if (cachedMeta && cachedGames && cachedGames.length) {
+      applyCatalog(cachedGames, cachedMeta);
+      renderedFromCache = true;
+    }
+  } catch (e) {
+    console.warn('IDB load error:', e);
+  }
+
+  // 2. Sincronización en red
+  try {
+    const metaRes = await fetch('./data/meta.json?_t=' + Date.now());
+    if (!metaRes.ok) throw new Error('Error al cargar meta.json');
+    const freshMeta = await metaRes.json();
+
+    const needGames = !renderedFromCache || (freshMeta.updated && freshMeta.updated !== META?.updated);
+    if (needGames) {
+      const cacheBust = freshMeta.updated ? encodeURIComponent(freshMeta.updated) : Date.now();
+      const gamesRes = await fetch('./data/games.json?_t=' + cacheBust);
+      if (!gamesRes.ok) throw new Error('Error al cargar games.json');
+      const freshGames = await gamesRes.json();
+
+      idbSet('meta', freshMeta);
+      idbSet('games', freshGames);
+
+      applyCatalog(freshGames, freshMeta);
+    }
+  } catch (err) {
+    console.error('Boot network error:', err);
+    if (!renderedFromCache) {
+      const st = $('#state');
+      if (st) {
+        st.hidden = false;
+        st.style.display = 'flex';
+        st.innerHTML = `<div style="color:var(--low)">Error al inicializar catálogo: ${err.message}. <button type="button" class="act-btn" onclick="boot()" style="margin-top:10px">Reintentar</button></div>`;
+      }
+    }
+  }
+}
+
+function updateBadges() {
+  const wlBadge = $('#wl-badge');
+  if (wlBadge) {
+    wlBadge.textContent = WATCHLIST.size;
+    wlBadge.style.display = WATCHLIST.size > 0 ? 'inline-flex' : 'none';
+  }
+  const newCount = GAMES.filter(g => g.d && g.d <= TODAY_STR && g.d >= THIRTY_DAYS_AGO).length;
+  const newBadge = $('#new-badge');
+  if (newBadge) {
+    newBadge.textContent = newCount;
+    newBadge.style.display = newCount > 0 ? 'inline-flex' : 'none';
+  }
+}
+
+function populateFilters() {
+  const cSel = $('#country');
+  cSel.innerHTML = `<option value="">Todos los países (${META.regions.length})</option>`;
+  for (const r of META.regions) {
+    const opt = document.createElement('option');
+    opt.value = r.code;
+    opt.textContent = `${r.name} (${r.code})`;
+    cSel.appendChild(opt);
+  }
+
+  const gSel = $('#genre');
+  const genres = new Set();
+  for (const g of GAMES) {
+    for (const cat of (g.g || [])) {
+      const cg = cleanGenre(cat);
+      if (cg) genres.add(cg);
+    }
+  }
+  const sortedGenres = Array.from(genres).sort((a, b) => a.localeCompare(b, 'es'));
+  gSel.innerHTML = '<option value="">Todos los géneros</option>';
+  for (const genre of sortedGenres) {
+    const opt = document.createElement('option');
+    opt.value = genre;
+    opt.textContent = genre;
+    gSel.appendChild(opt);
+  }
+}
+
+// ============= URL & Filtros =============
+function pushURL(replace = true) {
+  const p = new URLSearchParams();
+  const qv = $('#q')?.value.trim();
+  const sv = $('#sort')?.value;
+  const pv = $('#plat')?.value;
+  const rv = $('#rated')?.checked;
+  const gv = $('#genre')?.value;
+  const cv = $('#country')?.value;
+  const ob = $('#only-best')?.checked;
+
+  if (qv) p.set('q', qv);
+  if (sv && sv !== 'new') p.set('sort', sv);
+  if (pv) p.set('plat', pv);
+  if (mode !== 'all') p.set('mode', mode);
+  if (rv) p.set('rated', '1');
+  if (gv) p.set('genre', gv);
+  if (cv) p.set('country', cv);
+  if (ob) p.set('onlyBest', '1');
+  if (page > 1) p.set('page', page);
+
+  const qs = p.toString();
+  const url = (qs ? '?' + qs : location.pathname) + (location.hash || '');
+  if (replace) {
+    history.replaceState(history.state || {}, '', url);
+  } else {
+    history.pushState(history.state || {}, '', url);
+  }
+}
+
+function loadURL() {
+  const p = new URLSearchParams(location.search);
+  mode = p.get('mode') || 'all';
+  const pg = parseInt(p.get('page'), 10);
+  page = (!isNaN(pg) && pg >= 1) ? pg : 1;
+  if ($('#q')) $('#q').value = p.get('q') || '';
+  if ($('#sort')) $('#sort').value = p.get('sort') || 'new';
+  if ($('#plat')) $('#plat').value = p.get('plat') || '';
+  if ($('#rated')) $('#rated').checked = p.get('rated') === '1';
+  if ($('#genre')) $('#genre').value = p.get('genre') || '';
+  if ($('#country')) $('#country').value = p.get('country') || '';
+  if ($('#only-best')) $('#only-best').checked = p.get('onlyBest') === '1';
+
+  document.querySelectorAll('.tab').forEach(t => {
+    t.classList.toggle('active', t.dataset.mode === mode);
+  });
+  updateCountryUI();
+  updateGenrePill();
+}
+
+function updateCountryUI() {
+  const c = $('#country')?.value;
+  const pill = $('#country-active-pill');
+  const toggle = $('#only-best-toggle');
+  if (c && REG[c]) {
+    pill.hidden = false;
+    $('#country-active-flag').innerHTML = flagImg(c);
+    $('#country-active-name').textContent = REG[c].name;
+    toggle.hidden = false;
+  } else {
+    pill.hidden = true;
+    toggle.hidden = true;
+    if ($('#only-best')) $('#only-best').checked = false;
+  }
+}
+
+function updateGenrePill() {
+  const g = $('#genre')?.value;
+  const pill = $('#genre-active-pill');
+  if (g) {
+    pill.hidden = false;
+    $('#genre-active-name').textContent = g;
+  } else {
+    pill.hidden = true;
+  }
+}
+
+function filterByCountry(code) {
+  $('#country').value = code;
+  updateCountryUI();
+  pushURL();
+  render();
+}
+
+function filterByGenre(genre) {
+  $('#genre').value = genre;
+  updateGenrePill();
+  pushURL();
+  render();
+}
+
+// ============= Render principal =============
+function render() {
+  const q = $('#q').value.trim().toLowerCase();
+  const sort = $('#sort').value;
+  const plat = $('#plat').value;
+  const rated = $('#rated').checked;
+  const genre = $('#genre')?.value || '';
+  const country = $('#country')?.value || '';
+  const onlyBest = $('#only-best')?.checked || false;
+
+  const shelf = $('#new-shelf');
+  if (shelf) {
+    if (mode === 'all' || mode === 'nuevos') {
+      const hasRecents = GAMES.some(g => g.d && g.d <= TODAY_STR && g.d >= THIRTY_DAYS_AGO);
+      shelf.hidden = !hasRecents;
+    } else {
+      shelf.hidden = true;
+    }
+  }
+
+  ROWS = GAMES.filter(g => {
+    if (mode === 'ofertas' && !(g._disc > 0)) return false;
+    if (mode === 'preorder' && !g._isPre) return false;
+    if (mode === 'nuevos' && (!g.d || g.d > TODAY_STR || g.d < THIRTY_DAYS_AGO)) return false;
+    if (mode === 'watchlist' && !WATCHLIST.has(g.id)) return false;
+    if (plat && !(g.pf || []).includes(plat)) return false;
+    if (rated && (g.mc == null)) return false;
+    if (genre && !(g.g || []).some(x => cleanGenre(x) === genre)) return false;
+
+    if (country) {
+      if (!g.r || !g.r[country]) return false;
+      if (onlyBest && (!g._best || g._best.code !== country)) return false;
+    }
+
+    if (q) {
+      const matchTitle = g.t.toLowerCase().includes(q);
+      const matchGenre = (g.g || []).some(x => x.toLowerCase().includes(q));
+      if (!matchTitle && !matchGenre) return false;
+    }
+    return true;
+  });
+
+  // Ordenamiento
+  const bestOf = g => g._best;
+  const saveOf = g => {
+    const b = bestOf(g);
+    return (g._cl && b && b.clp < g._cl) ? (1 - b.clp / g._cl) : -1;
+  };
+
+  ROWS.sort((a, b) => {
+    if (sort === 'new') {
+      const da = a.d || (a.y ? a.y + '-01-01' : '1990-01-01');
+      const db = b.d || (b.y ? b.y + '-01-01' : '1990-01-01');
+      return db.localeCompare(da);
+    }
+    if (sort === 'preorder') {
+      const da = a.d || (a.y ? a.y + '-12-31' : '2099-01-01');
+      const db = b.d || (b.y ? b.y + '-12-31' : '2099-01-01');
+      return da.localeCompare(db);
+    }
+    if (sort === 'mc') return (b.mc ?? -1) - (a.mc ?? -1);
+    if (sort === 'clp') {
+      const pa = country ? (a.r?.[country]?.[1] ?? 1e9) : (bestOf(a)?.clp ?? 1e9);
+      const pb = country ? (b.r?.[country]?.[1] ?? 1e9) : (bestOf(b)?.clp ?? 1e9);
+      return pa - pb;
+    }
+    if (sort === 'save') return saveOf(b) - saveOf(a);
+    if (sort === 'disc') return (b._disc || 0) - (a._disc || 0);
+    if (sort === 'name') return a.t.localeCompare(b.t);
+    return 0;
+  });
+
+  // Renderizar estante de cabecera si está visible
+  if (shelf && !shelf.hidden) renderShelf();
+
+  // Paginación
+  const totalPages = Math.max(1, Math.ceil(ROWS.length / PER_PAGE));
+  if (page > totalPages) page = 1;
+  const slice = ROWS.slice((page - 1) * PER_PAGE, page * PER_PAGE);
+
+  // Contador con indicador claro de página
+  const pageSuffix = totalPages > 1 ? ` · Página ${page} de ${totalPages}` : '';
+  $('#count').textContent = `${ROWS.length.toLocaleString('es-CL')} resultados${pageSuffix}`;
+
+  const grid = $('#grid');
+  grid.innerHTML = '';
+  if (!slice.length) {
+    grid.innerHTML = `<div class="state" style="grid-column:1/-1">No se encontraron juegos con los filtros seleccionados.</div>`;
+  } else {
+    for (const g of slice) {
+      grid.appendChild(createCard(g));
+    }
+  }
+
+  renderPager(totalPages);
+}
+
+function renderShelf() {
+  const scroll = $('#new-shelf-scroll');
+  if (!scroll) return;
+  scroll.innerHTML = '';
+
+  const recents = GAMES
+    .filter(g => g.d && g.d <= TODAY_STR && g.d >= THIRTY_DAYS_AGO)
+    .sort((a, b) => b.d.localeCompare(a.d))
+    .slice(0, 24);
+
+  for (const g of recents) {
+    let bText, bClass;
+    if (g.d === TODAY_STR) { bText = '¡Hoy!'; bClass = 'today'; }
+    else if (g.d === YESTERDAY_STR) { bText = 'Ayer'; bClass = 'yesterday'; }
+    else { bText = fmtDateShort(g.d); bClass = 'recent'; }
+
+    const isFree = g._best?.clp === 0;
+    const shelfPriceText = g._best ? fmtCLP(g._best.clp) : 'Sin precio';
+    const shelfPriceClass = isFree ? ' gratis' : (!g._best ? ' no-price' : '');
+
+    const item = document.createElement('div');
+    item.className = 'shelf-card';
+    item.innerHTML = `
+      <span class="shelf-badge ${bClass}">${bText}</span>
+      ${g.img ? `<img class="shelf-img" src="${g.img}?w=260&h=260&format=jpg&q=80" alt="${cleanTitle(g.t)}" loading="lazy">` : `<div class="shelf-img ph">?</div>`}
+      <div class="shelf-info">
+        <div class="shelf-title" title="Doble clic para copiar">${cleanTitle(g.t)}</div>
+        <div class="shelf-price${shelfPriceClass}">${shelfPriceText}</div>
+      </div>
+    `;
+    item.addEventListener('click', () => openDetail(g));
+    const sTitle = item.querySelector('.shelf-title');
+    if (sTitle) {
+      sTitle.addEventListener('dblclick', (e) => {
+        e.stopPropagation();
+        copyGameTitle(g.t);
+      });
+    }
+    scroll.appendChild(item);
+  }
+}
+
+function createCard(g) {
+  const el = document.createElement('div');
+  el.className = 'card';
+
+  const best = g._best;
+  const isWatched = WATCHLIST.has(g.id);
+  const save = (g._cl && best && best.clp < g._cl) ? Math.round((1 - best.clp / g._cl) * 100) : null;
+
+  const scoreEl = g.mc != null
+    ? `<span class="score" style="background:${scoreColor(g.mc)}">${g.mc}</span><span class="slabel">IGDB</span>`
+    : `<span class="score na">N/A</span>`;
+
+  let relTag = '';
+  if (g.d === TODAY_STR) relTag = `<span class="new-tag today">¡Estrenado Hoy!</span>`;
+  else if (g.d === YESTERDAY_STR) relTag = `<span class="new-tag yesterday">Lanzado Ayer</span>`;
+  else if (g.d && g.d >= THIRTY_DAYS_AGO && g.d <= TODAY_STR) relTag = `<span class="new-tag recent">Lanzado ${fmtDate(g.d)}</span>`;
+  else if (g._isPre) relTag = `<span class="preorder-badge"><span class="dot"></span>Preventa · ${fmtDate(g.d)}</span>`;
+
+  const platformsHTML = (g.pf || []).map(p => `<span class="pf-tag ${p.toLowerCase()}">${p}</span>`).join('');
+  const genresHTML = (g.g || []).slice(0, 3).map(genre => {
+    const cg = cleanGenre(genre);
+    return `<button type="button" class="gtag" data-genre="${cg}">${cg}</button>`;
+  }).join('');
+
+  // Regiones desplegables
+  const regRows = (g._list || []).map(it => {
+    const r = REG[it.code] || { name: it.code };
+    const isB = best && it.clp === best.clp;
+    return `
+      <div class="rrow">
+        ${flagImg(it.code)}
+        <span class="rname">${r.name}${isB ? '<span class="rdisc" style="background:var(--accent-bright);color:#fff">Mejor</span>' : ''}</span>
+        ${it.disc ? `<span class="rdisc">-${it.disc}%</span>` : ''}
+        ${it.end ? `<span class="rend">hasta ${fmtDate(it.end)}</span>` : ''}
+        <span class="cmp-access">${r.access || ''}</span>
+        <span class="rlocal">${fmtLocal(it.local, r.cur)}</span>
+        <span class="rclp">${fmtCLP(it.clp)}</span>
+        <a href="https://store.playstation.com/${r.locale}/concept/${g.id}" target="_blank" rel="noopener">Store →</a>
+      </div>
+    `;
+  }).join('');
+
+  const countrySel = $('#country')?.value;
+  const cp = countrySel && g.r?.[countrySel];
+  const targetPriceVal = cp ? cp[1] : (best ? best.clp : null);
+  const isFree = targetPriceVal === 0;
+  const dispPriceText = targetPriceVal != null ? fmtCLP(targetPriceVal) : 'Sin precio';
+  const dispPriceClass = isFree ? ' gratis' : (targetPriceVal == null ? ' no-price' : '');
+  const dispRegName = cp ? (REG[countrySel]?.name || countrySel) : (best ? (REG[best.code]?.name || best.code) : '');
+  const dispFlag = cp ? flagImg(countrySel) : (best ? flagImg(best.code) : '');
+
+  el.innerHTML = `
+    ${g.img ? `<img class="cover" src="${g.img}?w=180&h=180&format=jpg&q=80" alt="${g.t}" loading="lazy">` : `<div class="cover-ph">?</div>`}
+    <div class="info">
+      <h3 class="gtitle" title="Doble clic para copiar">${cleanTitle(g.t)}</h3>
+      <div class="gmeta">
+        ${scoreEl}
+        ${platformsHTML}
+        ${relTag}
+      </div>
+      ${genresHTML ? `<div class="genre-tags">${genresHTML}</div>` : ''}
+    </div>
+    <div class="pbox">
+      <div class="bestrow">
+        ${dispFlag}
+        <span class="bregion">${dispRegName}</span>
+        <span class="bprice${dispPriceClass}">${dispPriceText}</span>
+      </div>
+      <div class="pbox-sub">
+        ${g._cl ? `<span class="chile">Chile: ${fmtCLP(g._cl)}</span>` : ''}
+        ${save ? `<span class="tag">-${save}% vs Chile</span>` : ''}
+      </div>
+      ${(best && best.disc && best.end) ? `<div class="ends">Oferta hasta ${fmtDate(best.end)}</div>` : ''}
+    </div>
+    <div class="actions">
+      <button class="expand">Ver las 13 regiones ${CHEV}</button>
+      <div class="act-group">
+        <button class="act-btn star-btn${isWatched ? ' star-on' : ''}">${STAR_ICO}<span>${isWatched ? 'Guardado' : 'Guardar'}</span></button>
+        <button class="act-btn cmp-btn">${COMPARE_ICO}<span>Comparar</span></button>
+        ${g.img ? `<button class="act-btn dl-btn" title="Descargar portada">${DLOAD}<span>Portada</span></button>` : ''}
+        <button class="act-btn detail-btn">${DETAIL_ICO}<span>Detalle</span></button>
+      </div>
+    </div>
+    <div class="regions">${regRows}</div>
+  `;
+
+  // Eventos de tarjeta
+  el.querySelector('.expand').addEventListener('click', () => {
+    const rx = el.querySelector('.regions');
+    const btn = el.querySelector('.expand');
+    const o = rx.classList.toggle('open');
+    btn.classList.toggle('open', o);
+  });
+  el.querySelector('.cover').addEventListener('click', () => openDetail(g));
+  el.querySelector('.detail-btn').addEventListener('click', () => openDetail(g));
+  el.querySelector('.cmp-btn').addEventListener('click', () => openCmp(g));
+  el.querySelector('.star-btn').addEventListener('click', () => toggleWatchlist(g.id));
+
+  const titleEl = el.querySelector('.gtitle');
+  titleEl.addEventListener('dblclick', (e) => {
+    e.stopPropagation();
+    copyGameTitle(g.t);
+  });
+
+  el.querySelectorAll('.gtag').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      filterByGenre(btn.dataset.genre);
+    });
+  });
+
+  const dlBtn = el.querySelector('.dl-btn');
+  if (dlBtn) {
+    dlBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      downloadCoverArt(g, false, dlBtn);
+    });
+  }
+
+  return el;
+}
+
+// ============= Descarga de Portada =============
+async function downloadCoverArt(g, is4K = false, btn = null) {
+  if (!g.img) return;
+  const origHTML = btn ? btn.innerHTML : '';
+  if (btn) {
+    btn.disabled = true;
+    btn.innerHTML = `<span class="spinner" style="width:12px;height:12px;border-width:2px;display:inline-block"></span><span>Descargando...</span>`;
+  }
+
+  // URL original sin parámetros de reducción de tamaño para máxima resolución
+  const cleanUrl = g.img.split('?')[0];
+  try {
+    const res = await fetch(cleanUrl);
+    if (!res.ok) throw new Error('Error al descargar');
+    const blob = await res.blob();
+    const blobUrl = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = blobUrl;
+    const sanitizedTitle = g.t.replace(/[^a-z0-9\-_()[\] ]/gi, '_').trim();
+    a.download = `${sanitizedTitle}${is4K ? '_4K' : ''}.jpg`;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    setTimeout(() => URL.revokeObjectURL(blobUrl), 10000);
+    showToast(`Portada de "${g.t}" descargada con éxito.`);
+  } catch (err) {
+    // Si fetch falla por CORS al descargar directo, abrir imagen en nueva pestaña
+    window.open(cleanUrl, '_blank', 'noopener');
+  } finally {
+    if (btn) {
+      btn.innerHTML = origHTML;
+      btn.disabled = false;
+    }
+  }
+}
+
+// ============= Modal Comparador =============
+function openCmp(g) {
+  cmpGame = g;
+  cmpAsc = true;
+  const mc = $('#modal-cover');
+  mc.src = g.img ? `${g.img}?w=120&h=120` : '';
+  mc.style.display = g.img ? '' : 'none';
+  $('#modal-title').textContent = g.t;
+  renderCmpRows();
+  $('#modal-overlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function renderCmpRows() {
+  const list = [...(cmpGame._list || [])].sort((a, b) => cmpAsc ? a.clp - b.clp : b.clp - a.clp);
+  const minClp = Math.min(...list.map(x => x.clp));
+  const tbody = $('#cmp-body');
+  tbody.innerHTML = '';
+
+  for (const it of list) {
+    const r = REG[it.code] || { name: it.code, cur: 'USD', locale: 'en-us' };
+    const isBest = it.clp === minClp;
+    const tr = document.createElement('tr');
+    if (isBest) tr.className = 'best-row';
+    tr.innerHTML = `
+      <td>${flagImg(it.code)} <b>${r.name}</b>${isBest ? '<span class="best-badge">Más barato</span>' : ''}</td>
+      <td style="color:var(--faint)">${r.access || ''}</td>
+      <td style="color:var(--muted);font-variant-numeric:tabular-nums">${fmtLocal(it.local, r.cur)}</td>
+      <td><b style="font-variant-numeric:tabular-nums">${fmtCLP(it.clp)}</b></td>
+      <td>${it.disc ? `<span class="rdisc">-${it.disc}%</span>` : '-'}</td>
+      <td style="color:var(--muted)">${it.end ? fmtDate(it.end) : '-'}</td>
+      <td><a href="https://store.playstation.com/${r.locale}/concept/${cmpGame.id}" target="_blank" rel="noopener" style="color:var(--accent-bright);font-weight:600">Ver →</a></td>
+    `;
+    tbody.appendChild(tr);
+  }
+}
+
+$('#cmp-sort-clp').addEventListener('click', () => {
+  cmpAsc = !cmpAsc;
+  $('#cmp-sort-clp').textContent = 'CLP ' + (cmpAsc ? '↑' : '↓');
+  renderCmpRows();
+});
+$('#modal-close').addEventListener('click', () => {
+  $('#modal-overlay').classList.remove('open');
+  document.body.style.overflow = '';
+});
+$('#modal-overlay').addEventListener('click', (e) => {
+  if (e.target === $('#modal-overlay')) {
+    $('#modal-overlay').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+});
+
+// ============= Vista Detalle Completa =============
+function openDetail(g) {
+  $('#main-view').style.display = 'none';
+  $('#detail-view').style.display = 'block';
+  window.scrollTo({ top: 0, behavior: 'instant' });
+
+  const best = g._best;
+  const isWatched = WATCHLIST.has(g.id);
+  const save = (g._cl && best && best.clp < g._cl) ? Math.round((1 - best.clp / g._cl) * 100) : null;
+  const scoreEl = g.mc != null
+    ? `<span class="score" style="background:${scoreColor(g.mc)}">${g.mc}</span><span class="slabel">IGDB</span>`
+    : `<span class="score na">N/A</span>`;
+
+  const platformsHTML = (g.pf || []).map(p => `<span class="pf-tag ${p.toLowerCase()}">${p}</span>`).join('');
+  const genresHTML = (g.g || []).map(genre => {
+    const cg = cleanGenre(genre);
+    return `<button type="button" class="gtag" data-genre="${cg}">${cg}</button>`;
+  }).join('');
+
+  const regRows = (g._list || []).map(it => {
+    const r = REG[it.code] || { name: it.code, cur: 'USD', locale: 'en-us' };
+    const isB = best && it.clp === best.clp;
+    return `
+      <div class="rrow" ${isB ? 'style="background:color-mix(in srgb,var(--accent) 8%,transparent)"' : ''}>
+        ${flagImg(it.code)}
+        <span class="rname">${r.name}${isB ? '<span class="best-badge">Más barato</span>' : ''}</span>
+        ${(it.disc && it.end) ? `<span class="rend">· oferta hasta ${fmtDate(it.end)}</span>` : ''}
+        <span class="cmp-access">${r.access || ''}</span>
+        <span class="rlocal">${fmtLocal(it.local, r.cur)}</span>
+        <span class="rclp">${fmtCLP(it.clp)}</span>
+        ${it.disc ? `<span class="rdisc">-${it.disc}%</span>` : ''}
+        <a href="https://store.playstation.com/${r.locale}/concept/${g.id}" target="_blank" rel="noopener">Store →</a>
+      </div>
+    `;
+  }).join('');
+
+  $('#detail-content').innerHTML = `
+    <div class="detail-hero">
+      ${g.img ? `<img class="detail-cover" src="${g.img}?w=500&h=500&format=jpg&q=90" alt="${g.t}">` : `<div class="detail-cover cover-ph">?</div>`}
+      <div>
+        <h1 class="detail-title" title="Doble clic para copiar">${g.t}</h1>
+        <div class="detail-score-row">
+          ${scoreEl}
+          ${platformsHTML}
+          <span style="color:var(--muted);font-size:12px">${g.d ? fmtDate(g.d) : (g.y || '')}</span>
+        </div>
+        ${genresHTML ? `<div class="detail-genre-tags">${genresHTML}</div>` : ''}
+        ${best ? `
+          <div class="detail-best">
+            Más barato en <b>${REG[best.code]?.name || best.code}</b> — <span class="bprice${best.clp === 0 ? ' gratis' : ''}">${fmtCLP(best.clp)}</span>
+            ${save ? `<span class="tag">-${save}% vs Chile</span>` : ''}
+          </div>
+        ` : ''}
+        <div style="display:flex;gap:8px;flex-wrap:wrap">
+          <button class="act-btn star-detail${isWatched ? ' star-on' : ''}">${STAR_ICO}<span>${isWatched ? 'En favoritos' : 'Agregar a favoritos'}</span></button>
+          ${g.img ? `<button class="act-btn dl-btn-d">${DLOAD}<span>Portada 4K</span></button>` : ''}
+        </div>
+      </div>
+    </div>
+    <div class="detail-section">
+      <h3 class="detail-section-title">Precios por región (13 tiendas)</h3>
+      <div style="border:1px solid var(--border);border-radius:11px;overflow:hidden">${regRows}</div>
+    </div>
+  `;
+
+  $('#detail-content .detail-title').addEventListener('dblclick', () => copyGameTitle(g.t));
+  $('#detail-content .star-detail').addEventListener('click', () => {
+    toggleWatchlist(g.id);
+    const on = WATCHLIST.has(g.id);
+    const btn = $('#detail-content .star-detail');
+    btn.classList.toggle('star-on', on);
+    btn.innerHTML = `${STAR_ICO}<span>${on ? 'En favoritos' : 'Agregar a favoritos'}</span>`;
+  });
+
+  const dl4k = $('#detail-content .dl-btn-d');
+  if (dl4k) {
+    dl4k.addEventListener('click', (e) => {
+      e.preventDefault();
+      downloadCoverArt(g, true, dl4k);
+    });
+  }
+
+  $('#detail-content').querySelectorAll('.gtag').forEach(btn => {
+    btn.addEventListener('click', () => {
+      closeDetail();
+      filterByGenre(btn.dataset.genre);
+    });
+  });
+}
+
+function closeDetail() {
+  $('#detail-view').style.display = 'none';
+  $('#main-view').style.display = 'block';
+}
+
+$('#detail-back').addEventListener('click', closeDetail);
+
+// ============= Pager =============
+function renderPager(totalPages) {
+  const wrap = $('#pager-wrap');
+  const pager = $('#pager');
+  const status = $('#pager-status');
+  if (!pager) return;
+
+  pager.innerHTML = '';
+  if (totalPages <= 1) {
+    if (wrap) wrap.style.display = 'none';
+    return;
+  }
+  if (wrap) wrap.style.display = 'flex';
+
+  if (status) {
+    status.innerHTML = `Página <strong>${page}</strong> de <strong>${totalPages}</strong>`;
+  }
+
+  const goTo = (p) => {
+    if (p < 1 || p > totalPages || p === page) return;
+    page = p;
+    pushURL(false);
+    render();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  // Botón Página Anterior
+  const prevBtn = document.createElement('button');
+  prevBtn.type = 'button';
+  prevBtn.innerHTML = '← Página anterior';
+  prevBtn.disabled = (page <= 1);
+  if (page > 1) {
+    prevBtn.addEventListener('click', () => goTo(page - 1));
+  }
+  pager.appendChild(prevBtn);
+
+  // Botones numéricos inteligentes
+  const addPageBtn = (p) => {
+    const b = document.createElement('button');
+    b.type = 'button';
+    b.textContent = p;
+    if (p === page) {
+      b.className = 'active';
+      b.setAttribute('aria-current', 'page');
+    } else {
+      b.addEventListener('click', () => goTo(p));
+    }
+    pager.appendChild(b);
+  };
+
+  const addEllipsis = () => {
+    const span = document.createElement('span');
+    span.className = 'pager-ellipsis';
+    span.textContent = '…';
+    pager.appendChild(span);
+  };
+
+  if (totalPages <= 7) {
+    for (let i = 1; i <= totalPages; i++) addPageBtn(i);
+  } else {
+    addPageBtn(1);
+    if (page > 3) addEllipsis();
+
+    const start = Math.max(2, page - 1);
+    const end = Math.min(totalPages - 1, page + 1);
+    for (let i = start; i <= end; i++) addPageBtn(i);
+
+    if (page < totalPages - 2) addEllipsis();
+    addPageBtn(totalPages);
+  }
+
+  // Botón Página Siguiente
+  const nextBtn = document.createElement('button');
+  nextBtn.type = 'button';
+  nextBtn.innerHTML = 'Página siguiente →';
+  nextBtn.disabled = (page >= totalPages);
+  if (page < totalPages) {
+    nextBtn.addEventListener('click', () => goTo(page + 1));
+  }
+  pager.appendChild(nextBtn);
+}
+
+// ============= Favoritos / Watchlist =============
+function toggleWatchlist(id) {
+  if (WATCHLIST.has(id)) {
+    WATCHLIST.delete(id);
+    showToast('Juego eliminado de favoritos.');
+  } else {
+    WATCHLIST.add(id);
+    showToast('Juego guardado en favoritos.');
+  }
+  localStorage.setItem('ps_watchlist', JSON.stringify([...WATCHLIST]));
+  updateBadges();
+  if (mode === 'watchlist') render();
+  else {
+    document.querySelectorAll('.card').forEach(c => {
+      const g = ROWS.find(x => x.id === id);
+      if (g) {
+        const btn = c.querySelector('.star-btn');
+        if (btn) {
+          const on = WATCHLIST.has(id);
+          btn.classList.toggle('star-on', on);
+          btn.innerHTML = `${STAR_ICO}<span>${on ? 'Guardado' : 'Guardar'}</span>`;
+        }
+      }
+    });
+  }
+}
+
+// ============= Escuchadores de eventos =============
+$('#q').addEventListener('input', () => { page = 1; pushURL(); render(); });
+$('#sort').addEventListener('change', () => { page = 1; pushURL(); render(); });
+$('#plat').addEventListener('change', () => { page = 1; pushURL(); render(); });
+$('#country').addEventListener('change', () => {
+  page = 1;
+  updateCountryUI();
+  pushURL();
+  render();
+});
+$('#genre').addEventListener('change', () => {
+  page = 1;
+  updateGenrePill();
+  pushURL();
+  render();
+});
+$('#rated').addEventListener('change', () => { page = 1; pushURL(); render(); });
+$('#only-best').addEventListener('change', () => { page = 1; pushURL(); render(); });
+
+$('#country-clear-btn').addEventListener('click', () => {
+  $('#country').value = '';
+  updateCountryUI();
+  pushURL();
+  render();
+});
+$('#genre-clear-btn').addEventListener('click', () => {
+  $('#genre').value = '';
+  updateGenrePill();
+  pushURL();
+  render();
+});
+
+document.querySelectorAll('.tab').forEach(t => {
+  t.addEventListener('click', () => {
+    document.querySelectorAll('.tab').forEach(x => x.classList.remove('active'));
+    t.classList.add('active');
+    mode = t.dataset.mode;
+    page = 1;
+    if (mode === 'nuevos') $('#sort').value = 'new';
+    if (mode === 'preorder') $('#sort').value = 'preorder';
+    if (mode === 'ofertas') $('#sort').value = 'disc';
+    closeDetail();
+    pushURL();
+    render();
+  });
+});
+
+$('#new-shelf-btn').addEventListener('click', () => {
+  document.querySelectorAll('.tab').forEach(x => x.classList.remove('active'));
+  const t = document.querySelector('.tab[data-mode="nuevos"]');
+  if (t) t.classList.add('active');
+  mode = 'nuevos';
+  $('#sort').value = 'new';
+  pushURL();
+  render();
+});
+
+// Tema claro/oscuro
+const themeBtn = $('#themebtn');
+const savedTheme = localStorage.getItem('ps_theme') || 'dark';
+document.documentElement.setAttribute('data-theme', savedTheme);
+themeBtn.addEventListener('click', () => {
+  const current = document.documentElement.getAttribute('data-theme') || 'dark';
+  const next = current === 'dark' ? 'light' : 'dark';
+  document.documentElement.setAttribute('data-theme', next);
+  localStorage.setItem('ps_theme', next);
+});
+
+// Service Worker PWA
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('./sw.js').catch(() => {});
+  });
+}
+
+window.addEventListener('popstate', () => {
+  loadURL();
+  render();
+});
+
+// Iniciar aplicación
+boot();
+</script>
+</body>
+</html>
